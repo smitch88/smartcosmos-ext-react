@@ -1,0 +1,31 @@
+//
+// Logo that appears in the top left corner of the page.
+//
+
+.logo {
+  display: block;
+  text-indent: -9999px;
+  text-align: center;
+  width: 140px;
+  height: 45px;
+  background: url('/images/smartcosmos-logo.svg') no-repeat center center;
+  background-size: 133px 40px;
+}
+
+.branding-logo {
+  background: url('/images/smartcosmos-globe.svg') no-repeat left center;
+  background-size: contain;
+  height: 150px;
+  width: 150px;
+
+  &.branding-logo--sm {
+    height: 40px;
+    width: 40px;
+  }
+
+  &.branding-logo--lg {
+    height: 300px;
+    width: 300px;
+  }
+
+}

@@ -1,0 +1,36 @@
+.cards {
+
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .cards__card {
+
+    @extend .card;
+
+    cursor: pointer;
+
+    &:hover, &.selected {
+      color: #fff;
+      border-color: $brand-primary;
+      background-color: $brand-primary;
+    }
+
+  }
+
+  .cards__image {
+    @extend .card-img-top;
+  }
+
+  .cards__block {
+    @extend .card-block;
+  }
+
+  .cards__title {
+    @extend .card-title;
+  }
+
+  .cards__text {
+    @extend .card-text;
+  }
+
+}

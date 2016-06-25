@@ -1,0 +1,27 @@
+@import "bootstrap-variables";
+
+#not-found-page {
+
+  height: 100%;
+  width: 100%;
+  margin-top: 10%;
+  text-align: center;
+
+}
+
+.not-found {
+
+  h1.not-found__title {
+    display: inline-block;
+    font-size: 3rem;
+    padding-bottom: 7px;
+    border-bottom: 1px dashed;
+    text-transform: uppercase;
+  }
+
+  a.not-found__return-link {
+    font-size: 1.25rem;
+    color: #fff;
+  }
+
+}

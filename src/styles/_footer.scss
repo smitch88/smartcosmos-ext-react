@@ -1,0 +1,50 @@
+//
+// Footer
+//
+
+.footer {
+
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  background-color: $brand-primary;
+  font-size: 85%;
+  text-align: left;
+  padding-top: 1.5rem;
+
+  ul.footer__links {
+    padding-left: 0;
+    margin-bottom: $spacer;
+    list-style: none;
+    height: 30px;
+    width: 100%;
+
+    li.footer__link {
+      display: inline-block;
+      color: $gray;
+
+      + li.footer__link {
+        margin-left: $spacer;
+      }
+
+      a {
+       color: inherit;
+      }
+    }
+  }
+
+  p.footer__help {
+
+    margin-bottom: 0;
+    color: $gray-light;
+    height: 30px;
+
+    a {
+     color: inherit;
+     text-decoration: underline;
+     margin-left: 3px;
+    }
+  }
+
+}

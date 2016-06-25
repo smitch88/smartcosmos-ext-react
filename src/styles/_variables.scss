@@ -1,0 +1,13 @@
+//
+// Style  Variables
+//
+
+// Deals with an issue for webpack development mode that corrupts relative path urls.
+// Any reference in CSS using URL should follow the following format: url('#{$assets}/img/path-to.png')
+$assets: "http://0.0.0.0:8080";
+
+// Overrides Font Awesome's font path so we don't need to bother distributing the fonts.
+$fa-font-path: "//netdna.bootstrapcdn.com/font-awesome/4.6.1/fonts"; // for referencing Bootstrap CDN font files directly
+
+$navbar-height: 60px;
+$footer-height: 150px;

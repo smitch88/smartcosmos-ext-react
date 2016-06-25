@@ -1,0 +1,48 @@
+//
+//  App Global Styles
+//
+
+// Application specific variables
+@import "variables";
+// Overrides default Bootstrap behavior with custom coloring.
+@import "bootstrap-variables";
+
+// Bootstrap from node_modules folder
+@import "../../node_modules/bootstrap/scss/bootstrap";
+// Font Awesome from node_modules folder
+@import "../../node_modules/font-awesome/scss/font-awesome";
+
+// Local components that are part of the layout.
+@import "typography";
+@import "footer";
+@import "logo";
+@import "error";
+@import "components";
+
+html {
+  position: relative;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+#app {
+
+  height: inherit;
+
+  .main-content {
+    padding-top: 20px;
+    min-height: calc(100% - #{ $navbar-height + $footer-height + 15px });
+  }
+
+  .pad-left {
+    margin-left: $spacer;
+  }
+
+  .pad-right {
+    margin-right: $spacer;
+  }
+
+}
