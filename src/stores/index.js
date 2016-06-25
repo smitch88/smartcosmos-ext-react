@@ -5,7 +5,7 @@ const reducers = require('../reducers');
 /*
 *
 * Single application store - Could be an in-memory sql impl like loki
-* could be a datalog database like datascript, place immutable map
+* could be a datalog database like datascript, an immutable map w/ ImmutableJS
 * or even just a plain js dictionary
 *
 */
