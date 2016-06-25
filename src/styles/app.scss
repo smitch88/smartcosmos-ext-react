@@ -37,12 +37,23 @@ body {
     min-height: calc(100% - #{ $navbar-height + $footer-height + 15px });
   }
 
-  .pad-left {
-    margin-left: $spacer;
-  }
+}
 
-  .pad-right {
-    margin-right: $spacer;
-  }
+.pad-left {
+  margin-left: $spacer;
+}
 
+.pad-right {
+  margin-right: $spacer;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.objects-container {
+  .objects-container__content {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
 }

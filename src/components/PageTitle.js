@@ -1,6 +1,5 @@
 import React from 'react';
-
-const classNames = require('classnames');
+import classNames from 'classnames';
 
 /*
 * PageTitle component

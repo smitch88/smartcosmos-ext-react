@@ -1,28 +1,41 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchObjects } from '../actions/objects';
+
+// Components
 import Cards from '../components/Cards';
+import LoadingIndicator from '../components/LoadingIndicator';
 import PageTitle from '../components/PageTitle';
 
 class Objects extends Component {
 
-  objectSelected( object ) {
-    window.console.log( "Object selected ", object );
+  componentDidMount(){
+    this.props.mounted();
   }
 
   render() {
 
-    // Replace with fetched data from store
-    const cardCount = [ ...Array( 11 ).keys() ];
+    let { objects, selected, isLoading, handleSelect } = this.props;
 
-    let cardData = cardCount.map(function( item, index ){
-      return {
-        title: 'Card - ' + item,
-        text: 'Some card text to display ' + item
-      };
-    });
+    let objectContent = (isLoading ?
+
+      <div className="align-center">
+        <LoadingIndicator size="lg" text="Loading . . ." />
+      </div>
+
+    :
+
+      <Cards data={ objects }
+             selected={ selected }
+             onSelect={ handleSelect } />
+
+    );
 
     return (
       <div className="objects-container">
+
         <PageTitle main="Objects"/>
+
         <p className="lead">
           Objects are a critical element in SMART COSMOS Objects. To put it
           simply, objects present things both tangible and intangible -- your
@@ -30,13 +43,18 @@ class Objects extends Component {
           exists in the world. However, your car also represents a model of
           a car, and this model can shared among thousands of other cars.
         </p>
+
         <p className="lead">
           Objects by themselves are not very interesting.  Each object has
           a <strong>type</strong> and <strong>name</strong> not necessarily
           unique to that object, which assists in grouping and classifying
           different objects.
         </p>
-        <Cards data={ cardData } onSelect={ this.objectSelected } />
+
+        <div className="objects-container__content">
+          { objectContent }
+        </div>
+
       </div>
     );
 
@@ -44,4 +62,37 @@ class Objects extends Component {
 
 }
 
-export default Objects;
+/*
+* Subscription
+*/
+
+function mapStateToProps(state) {
+
+  return {
+    ...state.objects,
+    session: state.session
+  }
+
+}
+
+/*
+* Dispatchers
+*/
+
+function mapDispatchToProps(dispatch) {
+
+  return {
+
+    handleSelect: function( object ){
+      dispatch({ type: 'SET_SELECTED', id: object.id });
+    },
+
+    mounted: function(){
+      dispatch(fetchObjects());
+    }
+
+  };
+
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Objects);

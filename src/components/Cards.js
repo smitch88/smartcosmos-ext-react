@@ -1,6 +1,5 @@
 import React from 'react';
-
-const classNames = require('classnames');
+import classNames from 'classnames';
 
 /*
 * Cards component
@@ -25,7 +24,7 @@ class Cards extends React.Component {
 
   }
 
-  onCardSelected( index, item, onSelect, evt ){
+  onCardSelected( index, item, onSelect ){
 
     // Change card selected state
     this.setState({
@@ -45,14 +44,14 @@ class Cards extends React.Component {
   * Returns a function closed over the cards `col` width based on a 12 column
   * grid system determined by `rowCount`
   */
-  generateCard({ perRow = 3, onSelect } ){
+  generateCard({ perRow = 3, onSelect, selected } ){
 
     let col = parseInt( 12 / perRow );
 
     return function( item , index ){
 
-      let { title, text } = item;
-      let isSelected = this.state.selected === index;
+      let { id, title, text } = item;
+      let isSelected = selected === id;
       let cardClass = classNames( 'cards__card', {selected: isSelected});
       let handler = this.onCardSelected.bind( null, index, item, onSelect );
 
@@ -74,7 +73,9 @@ class Cards extends React.Component {
 
   render() {
 
-    let cards = this.props.data.map(this.generateCard(this.props));
+    let { data } = this.props;
+
+    let cards = data && data.map(this.generateCard(this.props));
 
     return (
       <div className="cards row">

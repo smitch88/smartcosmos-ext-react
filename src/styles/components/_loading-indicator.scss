@@ -1,0 +1,17 @@
+.loading-indicator {
+
+  font-size: 1rem;
+
+  i.loading-indicator__icon {
+    display: inline-block;
+  }
+
+  p.loading-indicator__text {
+    display: inline-block;
+    margin-left: 10px;
+    font-weight: 600;
+    position: relative;
+    bottom: 5px;
+  }
+
+}
