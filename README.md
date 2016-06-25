@@ -1,0 +1,3 @@
+#### Development Mode
+
+`npm start`
