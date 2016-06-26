@@ -26,7 +26,9 @@ render(
       <Route path="/" component={App}>
         <IndexRedirect to="/home"/>
         <Route path="home" component={Home}/>
-        <Route path="objects" component={Objects}/>
+        <Route path="objects" component={Objects}>
+          //<Route path="objects/:objectId" component={Home}/>
+        </Route>
         <Route path="relationships" component={Relationships}/>
       </Route>
       <Route path="/error" component={NotFound} />
