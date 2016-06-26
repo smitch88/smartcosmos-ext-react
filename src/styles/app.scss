@@ -35,7 +35,7 @@ body {
   .main-content {
     padding-top: 20px;
     min-height: calc(100% - #{ $navbar-height + $footer-height + 15px });
-  }
+}
 
 }
 
@@ -52,8 +52,56 @@ body {
 }
 
 .objects-container {
+
   .objects-container__content {
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
+
+  .cards__card {
+
+    max-height: 250px;
+    overflow-y: scroll;
+    padding: "0 10px";
+
+    &.selected, :hover {
+
+      .cards__title {
+        color: $brand-warning;
+      }
+
+      .list-view__label {
+        color: $brand-warning;
+      }
+
+    }
+
+    .cards__title {
+      text-decoration: underline;
+      color: #fff;
+    }
+
+    .list-view {
+
+      list-style: none;
+      padding: 0;
+
+      .list-view__item {
+
+        display: block;
+        width: 100%;
+
+        .list-view__label {
+          font-weight: 600;
+          display: inline-block;
+          margin-right: 10px;
+        }
+
+        .list-view__value {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
 }

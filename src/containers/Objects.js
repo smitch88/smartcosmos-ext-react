@@ -7,10 +7,100 @@ import Cards from '../components/Cards';
 import LoadingIndicator from '../components/LoadingIndicator';
 import PageTitle from '../components/PageTitle';
 
+const uppercaseRegex = /(?=[A-Z])/;
+
+const capitalize = function( s ){
+  return s ? (s[0].toUpperCase() + s.substring( 1, s.length )) : "";
+}
+
 class Objects extends Component {
+
+  constructor(props){
+
+    super(props);
+
+    this.cardRenderer = this.cardRenderer.bind(this);
+    this.keyToDisplay = this.keyToDisplay.bind(this);
+    this.valueToDisplay = this.valueToDisplay.bind(this);
+    this.renderListView = this.renderListView.bind(this);
+
+  }
 
   componentDidMount(){
     this.props.mounted();
+  }
+
+  /*
+  * Takes a `k` and returns a displayable version of the key
+  * i.e Camel -> spaced and capitalized
+  */
+  keyToDisplay( k ){
+    return k.split( uppercaseRegex )
+            .map( capitalize )
+            .join( " " );
+  }
+
+  /*
+  * Takes a `value` and returns a displayable version
+  */
+  valueToDisplay( value ){
+
+    let valueType = typeof value;
+    let returnValue;
+
+    switch( valueType ){
+
+      case 'boolean':
+        returnValue = value ? "Yes" : "No";
+        break;
+
+      case 'object':
+        returnValue = "asda"
+        break;
+
+      default:
+        returnValue = value.toString();
+        break;
+    }
+
+        return returnValue;
+    }
+
+  // This would ultimately be another kind of component
+  renderListView( item ){
+    return (
+      <ul className="list-view">
+        {
+          Object.keys( item ).map(function( k, index ){
+
+            let keyDisplay = this.keyToDisplay( k );
+            let valueDisplay = this.valueToDisplay( item[ k ] );
+
+            return ( valueDisplay &&
+                    <li key={ index } className="list-view__item">
+                      <label className="list-view__label">
+                        { keyDisplay }:
+                      </label>
+                      <p className="list-view__value">
+                        { valueDisplay }
+                      </p>
+                    </li>
+                   )}.bind(this))
+        }
+      </ul>
+    );
+  }
+
+  cardRenderer( item ){
+
+    return {
+      title: item.name,
+      text: <div className="object-card-container">
+              { item.description && <p className="lead">item.description</p> }
+              { this.renderListView( item ) }
+            </div>
+    };
+
   }
 
   render() {
@@ -26,6 +116,7 @@ class Objects extends Component {
     :
 
       <Cards data={ objects }
+             renderer = { this.cardRenderer }
              selected={ selected }
              onSelect={ handleSelect } />
 

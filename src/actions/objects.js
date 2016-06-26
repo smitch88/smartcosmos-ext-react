@@ -33,12 +33,10 @@ const fetchObjects = function(){
 
         let objects = Object.keys( response ).reduce(function( acc, item ) {
 
-          let { name, urn } = response[ item ];
-
+          // denormalize
           acc.push({
-            id: urn,
-            title: name,
-            text: urn
+            id: item,
+            ...response[ item ]
           });
 
           return acc;

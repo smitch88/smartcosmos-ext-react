@@ -44,16 +44,22 @@ class Cards extends React.Component {
   * Returns a function closed over the cards `col` width based on a 12 column
   * grid system determined by `rowCount`
   */
-  generateCard({ perRow = 3, onSelect, selected } ){
+  generateCard({ perRow = 3, onSelect, selected, renderer } ){
 
     let col = parseInt( 12 / perRow );
 
     return function( item , index ){
 
-      let { id, title, text } = item;
+      let { id } = item;
       let isSelected = selected === id;
       let cardClass = classNames( 'cards__card', {selected: isSelected});
       let handler = this.onCardSelected.bind( null, index, item, onSelect );
+
+      /* Pass off into renderer or just attempt to use item though this
+      *  will be null, null unless the structure was generated beforehand.
+      *  The renderer can return a react component or plain text
+      */
+      let { title, text } = renderer ? renderer( item ) : item;
 
       return (
         <div key={ index } className={ 'col-sm-' + col }>
@@ -61,7 +67,7 @@ class Cards extends React.Component {
                onClick={ handler }>
             <div className="cards__block">
               <h4 className="cards__title">{ title }</h4>
-              <p className="cards__text">{ text }</p>
+              <div className="cards__text">{ text }</div>
             </div>
           </div>
         </div>
