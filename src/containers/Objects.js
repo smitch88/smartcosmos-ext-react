@@ -55,7 +55,7 @@ class Objects extends Component {
         break;
 
       case 'object':
-        returnValue = "asda"
+        returnValue = value.toString();
         break;
 
       default:
